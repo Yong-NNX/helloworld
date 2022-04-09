@@ -6,4 +6,4 @@ application to Cloud Run.
 ## Dependencies
 
 * **Spring Boot**: Web server framework.
-* **Junit**: [development] Test running framework.
+* **Junit**: Test running framework.
