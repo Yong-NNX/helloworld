@@ -25,19 +25,9 @@ jobs:
       
       - name: Build
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:${{  github.sha }} .
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:latest .
 
       - name: Push
         run: |
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:${{  github.sha }}
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:latest
           
-      - name: Deploy to Cloud Run
-        id: helloworld
-        uses: google-github-actions/deploy-cloudrun@v0.4.0
-        with:
-          service: helloworld
-          image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:${{  github.sha }}
-          region: eu-north1
-
-      - name: Show Output
-        run: echo ${{ steps.helloworld.outputs.url }}
