@@ -30,3 +30,14 @@ jobs:
       - name: Push
         run: |
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:latest
+            - name: Deploy to Cloud Run
+      - name: Deploy to Cloud Run
+        id: helloworld
+        uses: google-github-actions/deploy-cloudrun@v0.4.0
+        with:
+          service: helloworld
+          image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:latest
+          region: eu-north1
+
+      - name: Show Output
+        run: echo ${{ steps.helloworld.outputs.url }}
