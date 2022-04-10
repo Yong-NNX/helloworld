@@ -7,3 +7,6 @@ application to Cloud Run.
 - build a docker image
 - upload docker image to gcr
 
+## Workflow
+
+Helloworld Repo ------> Github Action ------> GCP(container registry)
